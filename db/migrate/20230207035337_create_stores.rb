@@ -6,7 +6,7 @@ class CreateStores < ActiveRecord::Migration[7.0]
       t.string :city
       t.string :state
       t.integer :zip
-      t.integer :phone
+      t.string :phone
       t.boolean :active
 
       t.timestamps

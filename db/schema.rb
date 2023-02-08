@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_080626) do
     t.string "last_name"
     t.string "ssn"
     t.date "date_of_birth"
-    t.integer "phone"
+    t.string "phone"
     t.string "role"
     t.boolean "active"
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_080626) do
     t.string "city"
     t.string "state"
     t.integer "zip"
-    t.integer "phone"
+    t.string "phone"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
