@@ -1,4 +1,8 @@
 class Assignment < ApplicationRecord
-  belongs_to :Store
-  belongs_to :Employee
+  # Relationships 
+  belongs_to :store
+  belongs_to :employee
+
+  ## Scopes
+  
 end
