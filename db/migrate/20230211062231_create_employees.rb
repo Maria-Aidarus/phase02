@@ -4,10 +4,13 @@ class CreateEmployees < ActiveRecord::Migration[7.0]
       t.string :first_name
       t.string :last_name
       t.string :ssn
-      t.date :date_of_birth
+      t.string :date_of_birth
+      t.string :date
       t.string :phone
       t.string :role
-      t.boolean :active
+      t.string :integer
+      t.string :active
+      t.string :boolean
 
       t.timestamps
     end

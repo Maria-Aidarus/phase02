@@ -10,26 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_080626) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_062658) do
   create_table "assignments", force: :cascade do |t|
-    t.integer "Store_id", null: false
-    t.integer "Employee_id", null: false
-    t.date "start_date"
-    t.date "end_date"
+    t.integer "store_id_id", null: false
+    t.integer "employee_id_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Employee_id"], name: "index_assignments_on_Employee_id"
-    t.index ["Store_id"], name: "index_assignments_on_Store_id"
+    t.index ["employee_id_id"], name: "index_assignments_on_employee_id_id"
+    t.index ["store_id_id"], name: "index_assignments_on_store_id_id"
   end
 
   create_table "employees", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "ssn"
-    t.date "date_of_birth"
+    t.string "date_of_birth"
+    t.string "date"
     t.string "phone"
     t.string "role"
-    t.boolean "active"
+    t.string "integer"
+    t.string "active"
+    t.string "boolean"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,13 +40,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_080626) do
     t.string "street"
     t.string "city"
     t.string "state"
-    t.integer "zip"
+    t.string "zip"
     t.string "phone"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "assignments", "Employees"
-  add_foreign_key "assignments", "Stores"
+  add_foreign_key "assignments", "employee_ids"
+  add_foreign_key "assignments", "store_ids"
 end
