@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_062939) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_064311) do
   create_table "assignments", force: :cascade do |t|
     t.integer "store_id", null: false
     t.integer "employee_id", null: false
@@ -24,13 +24,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_062939) do
     t.string "first_name"
     t.string "last_name"
     t.string "ssn"
-    t.string "date_of_birth"
-    t.string "date"
+    t.date "date_of_birth"
     t.string "phone"
-    t.string "role"
-    t.string "integer"
-    t.string "active"
-    t.string "boolean"
+    t.integer "role"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
