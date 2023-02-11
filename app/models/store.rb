@@ -8,7 +8,7 @@ class Store < ApplicationRecord
     scope :active, -> { where(active:true) }
 
     # inactive employees
-    scope :inactive, -> { where.not(active:true) }
+    scope :inactive, -> { where.(active:false) }
 
     # orders employees in alphabetical order
     scope :alphabetical, -> { order('name') }
