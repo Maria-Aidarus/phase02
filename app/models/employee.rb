@@ -3,13 +3,18 @@ class Employee < ApplicationRecord
     has_many :assignments
     has_many :stores, through: :assignments
 
+    ## Validations
+    #------------------
+    # validating the presence of several fields
+    validates_presence _of :first_name, :last_name
+
     ## Scopes
     scope :active, -> { where(active: true) }
     scope :inactive, -> { where(active: false) }
     scope :alphabetical, -> { order('last_name, first_name') }
     scope :is_18_or_older, -> { where('date_of_birth <= ?', 18.years.ago) }
     scope :younger_than_18, -> { where('date_of_birth > ?', 18.years.ago) }
-    
+
     # roles | mapping
     enum :role, { employee: 1, manager: 2, admin: 3 }
     scope :regulars, -> { where(role: 1) }
