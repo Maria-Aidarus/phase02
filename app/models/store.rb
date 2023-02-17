@@ -39,13 +39,13 @@ class Store < ApplicationRecord
     end
 
     # reformats the phone number
-    def reformat_phone
+    #def reformat_phone
         # changes the var to a string 
-        phone = self.phone.to_s  
+        #phone = self.phone.to_s  
         # removes all of the non-digit values
-        phone = phone.gsub(/[^0-9]/,"") 
+        #phone = phone.gsub(/[^0-9]/,"") 
         # creates new string stored with the phone number
-        self.phone = phone       
-      end
+        #self.phone = phone       
+    #end
 
 end

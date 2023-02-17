@@ -11,11 +11,11 @@ class Assignment < ApplicationRecord
   scope :by_employee, -> { (joins(:employee).order('last_name', 'first_name')) }
 
   scope :chronological, -> { order('start_date DESC') }
-  scope :for_store, ->(store) { where('store_id = ?', store.id)}
+  scope :for_store, ->(store) { where('store_id = ?', store.id) }
 
-  scope :for_emoloyee, ->(employee) { where('employee_id = ?', employee.id)}
-  scope :for_role, ->(role) { (joins(:employee).where('role = ?', Employee.roles[role])) }
+  scope :for_emoloyee, ->(employee) { where('employee_id = ?', employee.id) } 
+  scope :for_role, ->(role) { joins(:employee).where('role = ?', Employee.roles[role]) }
+
   scope :for_date, ->(date) { where('start_date <= ? AND (end_date > ? OR end_date IS NULL)', date, date) }
-  
 
 end
