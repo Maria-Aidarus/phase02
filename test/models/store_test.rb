@@ -36,8 +36,16 @@ describe Store do
   should_not allow_value(100).for(:state)
   should_not allow_value(10).for(:state)
 
-
-
-  
+  # Validating phone...
+  should allow_value("4122683259").for(:phone)
+  should allow_value("412-268-3259").for(:phone)
+  should allow_value("412.268.3259").for(:phone)
+  should allow_value("(412) 268-3259").for(:phone)
+    
+  should_not allow_value("2683259").for(:phone)
+  should_not allow_value("4122683259x224").for(:phone)
+  should_not allow_value("800-TEX-TEEX").for(:phone)
+  should_not allow_value("412/268/3259").for(:phone)
+  should_not allow_value("412-2683-259").for(:phone)
 
 end
