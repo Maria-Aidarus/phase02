@@ -6,17 +6,17 @@ class Employee < ApplicationRecord
     ## Validations
     #------------------
     # validating the presence of several fields
-    validates_presence _of :first_name, :last_name
+    #validates_presence _of :first_name, :last_name
     # validating uniqueness of ssn
-    validates_uniqueness_of :ssn
+    #validates_uniqueness_of :ssn
     # validating the phone number
-    validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "The Phone Number should be 10 digits long."
+    #validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "The Phone Number should be 10 digits long."
     # validating the ssn 
-    validates_format_of :ssn, with: /\A(\d{9}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "The ssn should be 9 digits long."
+    #validates_format_of :ssn, with: /\A(\d{9}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "The ssn should be 9 digits long."
     # validating the age
-    validates_date :date_of_birth, before: 14.years.ago, before_message: "Employees have to be older than 14 years of age."
+    #validates_date :date_of_birth, before: 14.years.ago, message: "Employees have to be older than 14 years of age."
     # validating the roles 
-    validates_inclusion_of :role, in: %w[employee manager admin], message: "You must be an Employee, Manager, or Admin."
+    #validates_inclusion_of :role, in: %w[employee manager admin], message: "You must be an Employee, Manager, or Admin."
 
     ## Scopes
     scope :active, -> { where(active: true) }
