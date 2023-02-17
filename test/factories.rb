@@ -8,7 +8,7 @@ FactoryBot.define do
         state { "PA" }
         zip { "12345" }
         phone { rand(10 ** 10).to_s.rjust(10,'0') }
-        active true
+        active { true }
     end
 
     # Employee
@@ -19,7 +19,7 @@ FactoryBot.define do
         date_of_birth { 20.years.ago.to_date }
         phone  { rand(10 ** 10).to_s.rjust(10,'0') }
         role { 3 }
-        active true
+        active { true }
     end
 
     # Assignment
