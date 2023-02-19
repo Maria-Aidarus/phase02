@@ -34,6 +34,16 @@ class Employee < ApplicationRecord
     scope :is_18_or_older, -> { where('date_of_birth <= ?', 18.years.ago) }
     scope :younger_than_18, -> { where('date_of_birth > ?', 18.years.ago) }
 
+    def make_active 
+        self.active = true
+        self.save!
+    end
+
+    def make_inactive
+        self.active = false
+        self.save!
+    end
+
     # roles | mapping
     enum :role, { employee: 1, manager: 2, admin: 3 }
     scope :regulars, -> { where(role: 1) }

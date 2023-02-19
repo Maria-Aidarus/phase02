@@ -10,7 +10,6 @@ class Assignment < ApplicationRecord
   validates_presence_of :store_id
   validates_presence_of :employee_id
   validates_presence_of :start_date
-  #validates_absence_of :end_date
   # validating date
   validates_date :start_date
   validates :start_date, comparison: {less_than_or_equal_to: Date.current }
