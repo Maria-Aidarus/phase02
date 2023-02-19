@@ -23,13 +23,9 @@ FactoryBot.define do
 
     # Assignment
     factory :assignment do
-        store { 1 }
-        employee { 1 }
+        association :store
+        association :employee
         start_date { "2023-02-11" }
         end_date { "2023-02-12" }
-        association :store
-        association :employees
     end
-
-
 end
