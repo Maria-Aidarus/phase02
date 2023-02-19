@@ -1,15 +1,21 @@
 class Assignment < ApplicationRecord
-  ## Relationships 
+  # Relationships 
   #------------------
   belongs_to :store
   belongs_to :employee
 
-  ## Validations 
+  # Validations 
   #------------------
-  #validating store_id, employee_id
-  validates_presence_of: store_id, :employee_id
+  # validating store_id, employee_id
+  validates_presence_of: store_id, :employee_id, start_date
+  # validating date
+  validates_date :start_date
+  validates :start_date, comparison: {less_than_or_equal_to: Date.current }
+  validates_date :end_date, allow_blank: true
+  validates :end_date, comparison: { greater_than: :start_date }, allow_blank:
 
-  ## Scopes
+
+  # Scopes
   #------------------
   scope :current, -> { where(end_date: nil) }
   scope :past -> { where.not(end_date: nil) }

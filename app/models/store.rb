@@ -6,6 +6,7 @@ class Store < ApplicationRecord
     has_many :employees, through: :assignments
 
     # Callback
+    #------------------
     before_save :reformat_phone
 
     # Validations

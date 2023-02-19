@@ -39,7 +39,7 @@ describe Store do
   should_not allow_value(100).for(:state)
   should_not allow_value(10).for(:state)
 
-  # Validating phone...
+  # validating phone
   should allow_value("4122683259").for(:phone)
   should allow_value("412-268-3259").for(:phone)
   should allow_value("412.268.3259").for(:phone)
@@ -52,7 +52,7 @@ describe Store do
   should_not allow_value("412-2683-259").for(:phone)
 
   # Creating Contexts
-  context "Creating three stores" do 
+  context "Creating a store context" do 
     setup do
       create_stores
     end
@@ -66,7 +66,7 @@ describe Store do
       assert_equal ["CMU Cafe", "Coffee Beans", "Flat White", "Starbucks"], Store.alphabetical.map{|s| s.name}
     end
 
-    should "have a scope that returns tha active stores" do
+    should "have a scope that returns the active stores" do
       assert_equal ["CMU Cafe", "Coffee Beans", "Starbucks"], Store.active.alphabetical.map{|s| s.name}
     end
 
@@ -84,6 +84,7 @@ describe Store do
       assert_equal false, @cmu_cafe.active
     end
 
+    # Testing the private methods
     should "show that the CMU Cafe's phone number was stripped of non-digits" do
       assert_equal "7628272973", @cmu_cafe.phone
     end

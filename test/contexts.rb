@@ -20,7 +20,7 @@ module Contexts
         @huda = FactoryBot.create(:employee, first_name: "Huda", last_name: "Joad", ssn: "329420134", date_of_birth: "2003-06-06", phone: "876.546.2354", role: 3, active: true)
         @maryam = FactoryBot.create(:employee, first_name: "Maryam", last_name: "Rahmatullah", ssn: "844982543", date_of_birth: "2002-12-11", phone: "564.111.2222", role: 2)
         @may = FactoryBot.create(:employee, first_name: "May", last_name: "Khin", ssn: "987428523", date_of_birth: "2000-09-15", phone: "121.135.8763", active: false)
-        @sara = FactoryBot.create(:employee, first_name: "Sara", last_name: "Al-Saloos", ssn: "321-25-9743", date_of_birth: "2004-09-5", phone: "111-222-3333", active: true)
+        @sara = FactoryBot.create(:employee, first_name: "Sara", last_name: "Al-Saloos", ssn: "321-25-9743", date_of_birth: "2006-09-5", phone: "111-222-3333", active: true)
     end
 
     def destroy_employees
@@ -32,6 +32,6 @@ module Contexts
     end
 
     # Assignments
-    
+
 
 end
