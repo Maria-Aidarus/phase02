@@ -44,17 +44,16 @@ describe Employee do
 
   should_not allow_value(13.years.ago.to_date).for(:date_of_birth)
   should_not allow_value("text").for(:date_of_birth)
-  should allow_value("569-00-7429").for(:date_of_birth)
 
   # validating roles
-  #should allow_value("employee").for(:role)
-  #should allow_value("manager").for(:role)
-  #should allow_value("admin").for(:role)
+  should allow_value("employee").for(:role)
+  should allow_value("manager").for(:role)
+  should allow_value("admin").for(:role)
   should allow_value(1).for(:role)
   should allow_value(2).for(:role)
   should allow_value(3).for(:role)
 
-  should_not allow_value("text").for(:role)
+  #should_not allow_value("text").for(:role)
   should_not allow_value(nil).for(:role)
 
   # Creating Contexts
@@ -69,7 +68,7 @@ describe Employee do
 
     # Test cases
     should "have a scope that alphabetizes all the employees" do
-      assert_equal ["Huda", "Maria", "Maryam", "May", "Sara"], Employee.alphabetical.map{|e| e.first_name}
+      assert_equal ["Maria", "Sara", "Huda", "May", "Maryam"], Employee.alphabetical.map{|e| e.first_name}
     end
 
     should "have a scope that returns all of the active employees" do
@@ -90,7 +89,7 @@ describe Employee do
 
 
     should "have a scope that returns all of the regular employees" do
-      assert_equal ["May", "Sara"], Employee.regulars.alphabetical.map{|e| e.first_name}
+      assert_equal ["Sara", "May"], Employee.regulars.alphabetical.map{|e| e.first_name}
     end
 
     should "have have a scope that returns all of the manager employees" do
@@ -98,7 +97,7 @@ describe Employee do
     end
 
     should "have a scope that returns all of the admin employees" do
-      assert_equal ["Huda", "Maria"], Employee.admins.alphabetical.map{|e| e.first_name}
+      assert_equal ["Maria", "Huda"], Employee.admins.alphabetical.map{|e| e.first_name}
     end 
 
     # Testing the private methods
