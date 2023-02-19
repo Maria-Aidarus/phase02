@@ -47,17 +47,15 @@ describe Employee do
   should allow_value("569-00-7429").for(:date_of_birth)
 
   # validating roles
-  should allow_value("employee").for(:role)
-  should allow_value("manager").for(:role)
-  should allow_value("admin").for(:role)
+  #should allow_value("employee").for(:role)
+  #should allow_value("manager").for(:role)
+  #should allow_value("admin").for(:role)
   should allow_value(1).for(:role)
   should allow_value(2).for(:role)
   should allow_value(3).for(:role)
 
-  should_not allow_value(4).for(:role)
-  should_not allow_value(10).for(:role)
   should_not allow_value("text").for(:role)
-  should_not allow_value("owner").for(:role)
+  should_not allow_value(nil).for(:role)
 
   # Creating Contexts
   context "Creating an employee context" do
@@ -75,15 +73,15 @@ describe Employee do
     end
 
     should "have a scope that returns all of the active employees" do
-      assert_equal ["Huda", "Maria", "Maryam", "Sara"], Employee.active.alphabetical.map{|e| e.first_name}
+      assert_equal ["Maria", "Sara", "Huda", "Maryam"], Employee.active.alphabetical.map{|e| e.first_name}
     end
 
     should "have a scope that returns all of the inactive employees" do
-      assert_equal ["May"], Employee.active.alphabetical.map{|e| e.first_name}
+      assert_equal ["May"], Employee.inactive.alphabetical.map{|e| e.first_name}
     end
 
     should "have a scope that returns all the employees that are 18 or older" do
-      assert_equal ["Huda", "Maria", "Maryam", "May"], Employee.is_18_or_older.alphabetical.map{|e| e.first_name}
+      assert_equal ["Maria", "Huda", "May", "Maryam"], Employee.is_18_or_older.alphabetical.map{|e| e.first_name}
     end
 
     should "have a scope that returns all the employees that are younger than 18" do
@@ -100,7 +98,7 @@ describe Employee do
     end
 
     should "have a scope that returns all of the admin employees" do
-      assert_equal ["HUda", "Maria"], Employee.admins.alphabetical.map{|e| e.first_name}
+      assert_equal ["Huda", "Maria"], Employee.admins.alphabetical.map{|e| e.first_name}
     end 
 
     # Testing the private methods

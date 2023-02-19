@@ -12,7 +12,7 @@ class Store < ApplicationRecord
     # Validations
     #------------------
     # validating the presence of several fields
-    validates_presence _of :name, :street, :city, :state, :zip, :phone
+    validates_presence_of :name, :street, :city, :state, :zip, :phone
     # validating uniqueness of store name
     validates_uniqueness_of :name, :case_sensitive => false
     # validating the zip code

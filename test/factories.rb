@@ -14,7 +14,7 @@ FactoryBot.define do
     factory :employee do
         first_name { "Maria" }
         last_name { "Aidarus" }
-        ssn { "123456789" }
+        ssn { "097328462" }
         date_of_birth { "2002-03-05" }
         phone { "243-654-2345" }
         role { 3 }

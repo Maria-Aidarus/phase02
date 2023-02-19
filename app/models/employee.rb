@@ -13,7 +13,7 @@ class Employee < ApplicationRecord
     # Validations
     #------------------
     # validating the presence of several fields
-    validates_presence _of :first_name, :last_name, :phone, :ssn, :role, :date_of_birth
+    validates_presence_of :first_name, :last_name, :phone, :ssn, :role, :date_of_birth
     # validating uniqueness of ssn
     validates_uniqueness_of :ssn
     # validating the phone number
