@@ -1,3 +1,4 @@
+# SimpleCov ...
 require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter "lib/tasks/"
@@ -9,14 +10,16 @@ SimpleCov.start 'rails' do
   add_filter "app/mailers/"
   add_filter "app/controllers/"
 end
-ENV['RAILS_ENV'] ||= 'test'
+
+
+ENV["RAILS_ENV"] ||= "test"
 require_relative '../config/environment'
 require 'rails/test_help'
 require "minitest"
 require 'minitest/rails'
 require 'minitest/reporters'
 require 'minitest_extensions'
-
+require 'contexts'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
@@ -31,7 +34,8 @@ class ActiveSupport::TestCase
     end
   end
 
-
+  # Add more helper methods to be used by all tests here...
+  include Contexts
 
   # Add the infamous deny method...
   def deny(condition, msg="")
@@ -42,3 +46,4 @@ class ActiveSupport::TestCase
   # Spruce up minitest results...
   Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new]
 end
+
