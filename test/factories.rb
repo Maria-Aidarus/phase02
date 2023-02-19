@@ -1,13 +1,12 @@
 FactoryBot.define do
-    
     # Store
     factory :store do
-        name { "CMU Cafe" }
+        name { "Starbucks" }
         street { "The Street One" }
         city { "Pittsburgh" }
         state { "PA" }
         zip { "12345" }
-        phone { rand(10 ** 10).to_s.rjust(10,'0') }
+        phone { "947-229-0129" }
         active { true }
     end
 
@@ -16,18 +15,20 @@ FactoryBot.define do
         first_name { "Maria" }
         last_name { "Aidarus" }
         ssn { "123456789" }
-        date_of_birth { 20.years.ago.to_date }
-        phone  { rand(10 ** 10).to_s.rjust(10,'0') }
+        date_of_birth { "2002-03-05" }
+        phone { "243-654-2345" }
         role { 3 }
         active { true }
     end
 
     # Assignment
     factory :assignment do
+        store { 1 }
+        employee { 1 }
+        start_date { "2023-02-11" }
+        end_date { "2023-02-12" }
         association :store
-        association :employee
-        start_date { 2.years.ago.to_date }
-        end_date { 1.years.ago.to_date }
+        association :employees
     end
 
 
