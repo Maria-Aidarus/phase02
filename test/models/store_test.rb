@@ -52,12 +52,18 @@ describe Store do
   # should_not allow_value("412-2683-259").for(:phone)
 
   # Creating Contexts
-  context "Creating a store context" do 
+  context "Creating a Store Context" do 
+    # creates associated records from the given model
     setup do
       create_stores
+      create_employees
+      create_assignments
     end
 
+    # deletes associated records from the given model
     teardown do
+      destroy_assignments
+      destroy_employees
       destroy_stores
     end 
 
