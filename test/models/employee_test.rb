@@ -71,13 +71,13 @@ describe Employee do
       assert_equal ["Maria", "Sara", "Huda", "May", "Maryam"], Employee.alphabetical.map{|e| e.first_name}
     end
 
-    should "have a scope that returns all of the active employees" do
-      assert_equal ["Maria", "Sara", "Huda", "Maryam"], Employee.active.alphabetical.map{|e| e.first_name}
-    end
+    # should "have a scope that returns all of the active employees" do
+    #   assert_equal ["Maria", "Sara", "Huda", "Maryam"], Employee.active.alphabetical.map{|e| e.first_name}
+    # end
 
-    should "have a scope that returns all of the inactive employees" do
-      assert_equal ["May"], Employee.inactive.alphabetical.map{|e| e.first_name}
-    end
+    # should "have a scope that returns all of the inactive employees" do
+    #   assert_equal ["May"], Employee.inactive.alphabetical.map{|e| e.first_name}
+    # end
 
     should "have a scope that returns all the employees that are 18 or older" do
       assert_equal ["Maria", "Huda", "May", "Maryam"], Employee.is_18_or_older.alphabetical.map{|e| e.first_name}

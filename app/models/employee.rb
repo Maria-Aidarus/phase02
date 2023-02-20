@@ -7,8 +7,8 @@ class Employee < ApplicationRecord
 
     # Callbacks
     #------------------
-    # before_save :reformat_phone
-    # before_save :reformat_ssn
+    before_save :reformat_phone
+    before_save :reformat_ssn
 
     # Validations
     #------------------
@@ -52,22 +52,22 @@ class Employee < ApplicationRecord
 
     # Private Methods
     #------------------
-    # private 
-    # def reformat_phone
-    #     # changes the var to a string 
-    #     phone = self.phone.to_s  
-    #     # removes all of the non-digit values
-    #     phone = phone.gsub(/[^0-9]/,"") 
-    #     # creates new string stored with the phone number
-    #     self.phone = phone       
-    # end
+    private 
+    def reformat_phone
+        # changes the var to a string 
+        phone = self.phone.to_s  
+        # removes all of the non-digit values
+        phone = phone.gsub(/[^0-9]/,"") 
+        # creates new string stored with the phone number
+        self.phone = phone       
+    end
 
-    # def reformat_ssn
-    #     # changes the var to a string 
-    #     ssn = self.ssn.to_s 
-    #     # removes all of the non-digit values
-    #     ssn = ssn.gsub(/[^0-9]/,"") 
-    #     # creates new string stored with the phone number
-    #     self.ssn = ssn
-    # end
+    def reformat_ssn
+        # changes the var to a string 
+        ssn = self.ssn.to_s 
+        # removes all of the non-digit values
+        ssn = ssn.gsub(/[^0-9]/,"") 
+        # creates new string stored with the phone number
+        self.ssn = ssn
+    end
 end

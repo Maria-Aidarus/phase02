@@ -1,4 +1,5 @@
 class Assignment < ApplicationRecord
+
   # Relationships 
   #------------------
   belongs_to :store
@@ -26,7 +27,7 @@ class Assignment < ApplicationRecord
   scope :by_employee, -> { (joins(:employee).order('last_name', 'first_name')) }
 
   scope :chronological, -> { order('start_date DESC') }
-
+  
   scope :for_store, ->(store) { where("store_id = ?", store.id) }
   scope :for_employee, ->(employee) { where("employee_id = ?", employee.id) }
 
