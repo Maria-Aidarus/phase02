@@ -2,9 +2,9 @@ module Contexts
     # Stores
     def create_stores
         @starbucks = FactoryBot.create(:store)
-        @coffee_beans = FactoryBot.create(:store, name: "Coffee Beans", phone: "434 342 4648")
-        @cmu_cafe = FactoryBot.create(:store, name: "CMU Cafe", street: "Street Two", state: "OH", phone: "(762) 827.2973")
-        @flat_white = FactoryBot.create(:store, name: "Flat White", street: "Cafe Street", phone: "123.673-9835", active: false)
+        @coffee_beans = FactoryBot.create(:store, name: "Coffee Beans", street: "Street One", city: "City One", state: "PA", zip: "84383", phone: "434 342 4648", active: true)
+        @cmu_cafe = FactoryBot.create(:store, name: "CMU Cafe", street: "Street Two", city: "City Two", state: "OH", zip: "43593", phone: "(762) 827.2973", active: true)
+        @flat_white = FactoryBot.create(:store, name: "Flat White", street: "Cafe Street", city: "City Three", state: "WV", zip: "54832", phone: "123.673-9835", active: false)
     end
 
     def destroy_stores
