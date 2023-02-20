@@ -57,13 +57,19 @@ describe Employee do
   # should_not allow_value(nil).for(:role)
 
   # Creating Contexts
-  context "Creating an employee context" do
+  context "Creating an Employee Context" do
+    # creates associated records from the given model
     setup do
+      create_stores
       create_employees
+      create_assignments
     end
 
+    # destroys associated records from the given model
     teardown do
-      destroy_employees
+      create_stores
+      create_employees
+      create_assignments
     end
 
     # Test cases
@@ -71,13 +77,13 @@ describe Employee do
       assert_equal ["Maria", "Sara", "Huda", "May", "Maryam"], Employee.alphabetical.map{|e| e.first_name}
     end
 
-    # should "have a scope that returns all of the active employees" do
-    #   assert_equal ["Maria", "Sara", "Huda", "Maryam"], Employee.active.alphabetical.map{|e| e.first_name}
-    # end
+    should "have a scope that returns all of the active employees" do
+      assert_equal ["Maria", "Sara", "Huda", "Maryam"], Employee.active.alphabetical.map{|e| e.first_name}
+    end
 
-    # should "have a scope that returns all of the inactive employees" do
-    #   assert_equal ["May"], Employee.inactive.alphabetical.map{|e| e.first_name}
-    # end
+    should "have a scope that returns all of the inactive employees" do
+      assert_equal ["May"], Employee.inactive.alphabetical.map{|e| e.first_name}
+    end
 
     should "have a scope that returns all the employees that are 18 or older" do
       assert_equal ["Maria", "Huda", "May", "Maryam"], Employee.is_18_or_older.alphabetical.map{|e| e.first_name}
@@ -86,7 +92,6 @@ describe Employee do
     should "have a scope that returns all the employees that are younger than 18" do
       assert_equal ["Sara"], Employee.younger_than_18.alphabetical.map{|e| e.first_name}
     end
-
 
     should "have a scope that returns all of the regular employees" do
       assert_equal ["Sara", "May"], Employee.regulars.alphabetical.map{|e| e.first_name}
@@ -100,7 +105,6 @@ describe Employee do
       assert_equal ["Maria", "Huda"], Employee.admins.alphabetical.map{|e| e.first_name}
     end 
 
-    # # Testing the private methods
     # should "show that Sara's phone was stripped of non-digits" do
     #   assert_equal "1112223333", @sara.phone
     # end
@@ -108,6 +112,16 @@ describe Employee do
     # should "show that May's ssn was stripped of non-digits" do
     #   assert_equal "987428523", @may.ssn
     # end
+
+    should "show that make_active method works" do
+      @flat_white.make_active
+      assert_equal true, @flat_white.active
+    end
+
+    should "show that make_inactive method works" do
+      @cmu_cafe.make_inactive
+      assert_equal false, @cmu_cafe.active
+    end
 
   end
   

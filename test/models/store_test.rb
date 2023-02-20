@@ -85,12 +85,11 @@ describe Store do
       assert_equal true, @flat_white.active
     end
 
-    should "show that make inactive method works" do
+    should "show that make_inactive method works" do
       @cmu_cafe.make_inactive
       assert_equal false, @cmu_cafe.active
     end
 
-    # Testing the private methods
     should "show that the CMU Cafe's phone number was stripped of non-digits" do
       assert_equal "7628272973", @cmu_cafe.phone
     end
