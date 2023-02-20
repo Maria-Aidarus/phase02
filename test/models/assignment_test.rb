@@ -77,5 +77,16 @@ describe Assignment do
     should "have a scope that returns all the assignments for date 2022-01-01" do
       assert_equal [2, 1], Assignment.for_date("2022-01-01").by_store.map{|a| a.id}
     end
+
+    should "show that make_active method works" do
+      @flat_white.make_active
+      assert_equal true, @flat_white.active
+    end
+
+    should "show that make_inactive method works" do
+      @cmu_cafe.make_inactive
+      assert_equal false, @cmu_cafe.active
+    end
+    
   end
 end
