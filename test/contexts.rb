@@ -32,6 +32,31 @@ module Contexts
     end
 
     # Assignments
+    def create_assignments
+        @maria_assignment = FactoryBot.create(:assignment, store: @starbucks, employee: @maria, start_date: "2022-01-01", end_date: "2023-01-01")
+        @huda_assignment = FactoryBot.create(:assignment, store: @flat_white, employee: @huda, start_date: "2022-04-09", end_date: "2022-10-31")
+        @maryam_assignment = FactoryBot.create(:assignment, store: @cmu_cafe, employee: @maryam, start_date: "2023-01-01", end_date: nil)
+        @may_assignment = FactoryBot.create(:assignment, store: @coffee_beans, employee: @may, start_date: "2023-02-06", end_date: nil)
+        @sara_assignment = FactoryBot.create(:assignment, store: @starbucks, employee: @sara, start_date: "2021-08-03", end_date: nil)
+    end
 
+    def destroy_assignments
+        @maria_assignment.delete
+        @huda_assignment.delete
+        @maryam_assignment.delete
+        @may_assignment.delete
+        @sara_assignment.delete
+    end
+
+    # Creates all the test entities
+    def create_all
+        create_stores
+        puts "Created Stores"
+        create_employees
+        puts "Created Employees"
+        create_assignments
+        puts "Created Assignments"
+    
+    end
 
 end
