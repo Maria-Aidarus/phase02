@@ -54,13 +54,7 @@ class Employee < ApplicationRecord
     end
 
     def over_18?
-        # store the current date
-        now = Date.current.to_date
-        # store the date_of_birth
-        dob = self.date_of_birth.to_date
-        # compare
-        age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-        age >= 18    
+        self.date_of_birth < 18.years.ago.to_date 
     end
 
     def make_active 
@@ -71,6 +65,18 @@ class Employee < ApplicationRecord
     def make_inactive
         self.active = false
         self.save!
+    end
+
+    def employee_role?
+        self.role == 1 || self.role == "employee"
+    end
+
+    def manager_role?
+        self.role == 2 || self.role == "manager"
+    end
+
+    def admin_role?
+        self.role == 3 || self.role == "admin"
     end
 
     # Private Methods
