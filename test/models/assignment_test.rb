@@ -137,7 +137,6 @@ describe Assignment do
       assert_equal false, @sara.over_18?
     end
 
-
     should "show that the employer_role? method works" do 
       assert_equal false , @maria.employee_role?
       assert_equal true, @sara.employee_role?
