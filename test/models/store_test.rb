@@ -106,7 +106,7 @@ describe Store do
     end
 
     should "show that the name method works" do 
-      assert_equal "Aidarus Maria", @maria.name
+      assert_equal "Aidarus, Maria", @maria.name
     end
 
     should "show that the proper_name method works" do

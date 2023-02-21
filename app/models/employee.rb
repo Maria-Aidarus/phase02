@@ -42,7 +42,7 @@ class Employee < ApplicationRecord
 
     # Methods 
     def name
-        self.last_name + "," + self.first_name
+        self.last_name + ", " + self.first_name
     end 
 
     def proper_name
