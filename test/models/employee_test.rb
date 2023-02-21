@@ -166,6 +166,11 @@ describe Employee do
       @temp_cafe.delete
     end
 
+    should "show that the over_18? method works" do 
+      assert_equal true, @maria.over_18?
+      assert_equal false, @sara.over_18?
+    end
+
   end
   
 end
