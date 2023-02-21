@@ -9,47 +9,47 @@ describe Store do
   should have_many(:assignments)
   should have_many(:employees).through(:assignments)
 
-  # # Validations
-  # should validate_presence_of(:name)
-  # should validate_presence_of(:street)
-  # should validate_presence_of(:city)
-  # should validate_presence_of(:state)
-  # should validate_presence_of(:zip)
-  # should validate_presence_of(:phone)
-  # should validate_uniqueness_of(:name).case_insensitive
+  # Validations
+  should validate_presence_of(:name)
+  should validate_presence_of(:street)
+  should validate_presence_of(:city)
+  should validate_presence_of(:state)
+  should validate_presence_of(:zip)
+  should validate_presence_of(:phone)
+  should validate_uniqueness_of(:name).case_insensitive
 
-  # # validating zip
-  # should allow_value("12345").for(:zip)
-  # should allow_value("23431").for(:zip)
-  # should allow_value("15217").for(:zip)
-  # should allow_value("15090").for(:zip)
+  # validating zip
+  should allow_value("12345").for(:zip)
+  should allow_value("23431").for(:zip)
+  should allow_value("15217").for(:zip)
+  should allow_value("15090").for(:zip)
 
-  # should_not allow_value("text").for(:zip)
-  # should_not allow_value("1234").for(:zip)
-  # should_not allow_value("12h89").for(:zip)
-  # should_not allow_value("8921A").for(:zip)
+  should_not allow_value("text").for(:zip)
+  should_not allow_value("1234").for(:zip)
+  should_not allow_value("12h89").for(:zip)
+  should_not allow_value("8921A").for(:zip)
 
-  # # validating state
-  # should allow_value("PA").for(:state)
-  # should allow_value("WV").for(:state)
-  # should allow_value("OH").for(:state)
+  # validating state
+  should allow_value("PA").for(:state)
+  should allow_value("WV").for(:state)
+  should allow_value("OH").for(:state)
 
-  # should_not allow_value("hi").for(:state)
-  # should_not allow_value("CA").for(:state)
-  # should_not allow_value(100).for(:state)
-  # should_not allow_value(10).for(:state)
+  should_not allow_value("hi").for(:state)
+  should_not allow_value("CA").for(:state)
+  should_not allow_value(100).for(:state)
+  should_not allow_value(10).for(:state)
 
-  # # validating phone
-  # should allow_value("4122683259").for(:phone)
-  # should allow_value("412-268-3259").for(:phone)
-  # should allow_value("412.268.3259").for(:phone)
-  # should allow_value("(412) 268-3259").for(:phone)
+  # validating phone
+  should allow_value("4122683259").for(:phone)
+  should allow_value("412-268-3259").for(:phone)
+  should allow_value("412.268.3259").for(:phone)
+  should allow_value("(412) 268-3259").for(:phone)
     
-  # should_not allow_value("2683259").for(:phone)
-  # should_not allow_value("4122683259x224").for(:phone)
-  # should_not allow_value("800-TEX-TEEX").for(:phone)
-  # should_not allow_value("412/268/3259").for(:phone)
-  # should_not allow_value("412-2683-259").for(:phone)
+  should_not allow_value("2683259").for(:phone)
+  should_not allow_value("4122683259x224").for(:phone)
+  should_not allow_value("800-TEX-TEEX").for(:phone)
+  should_not allow_value("412/268/3259").for(:phone)
+  should_not allow_value("412-2683-259").for(:phone)
 
   # Creating Contexts
   context "Creating a Store Context" do 
