@@ -146,7 +146,24 @@ describe Employee do
     end
 
     should "show that the current_assignment method works" do
-      assert_equal "2", @sara.current_assignment
+      assert_nil @huda.current_assignment
+      assert_equal @maria.current_assignment, @maria_assignment_two
+    end
+
+    should "show that the end_current_assignment method works" do
+      # Create a new store, employee, and two assignments
+      @temp_cafe = FactoryBot.create(:store, name: 'Cafe Temp')
+      @aisha = FactoryBot.create(:employee, first_name: 'Aisha', last_name: 'Al-Khaldi', ssn: '986201864')
+      @aisha_assignment = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2022-08-06', end_date: nil)
+      @aisha_assignment_two = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2023-02-21', end_date: nil)
+      @aisha_assignment.reload
+      # check for equality
+      assert_equal @aisha_assignment.end_date, @aisha_assignment_two.start_date
+      # Destroy all new objects
+      @aisha_assignment.delete
+      @aisha_assignment_two.delete
+      @aisha.delete
+      @temp_cafe.delete
     end
 
   end

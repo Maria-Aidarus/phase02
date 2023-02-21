@@ -5,17 +5,21 @@ class Assignment < ApplicationRecord
   belongs_to :store
   belongs_to :employee
 
+  # Callbacks
+  #------------------
+  before_create :end_current_assignment
+
   # Validations 
   #------------------
-  # # validating store_id, employee_id
-  # validates_presence_of :store_id
-  # validates_presence_of :employee_id
-  # validates_presence_of :start_date
-  # # validating date
-  # validates_date :start_date
-  # validates :start_date, comparison: {less_than_or_equal_to: Date.current }
-  # validates_date :end_date, allow_blank: true
-  # validates :end_date, comparison: { greater_than: :start_date }, allow_blank: true
+  # validating store_id, employee_id
+  validates_presence_of :store_id
+  validates_presence_of :employee_id
+  validates_presence_of :start_date
+  # validating date
+  validates_date :start_date
+  validates :start_date, comparison: {less_than_or_equal_to: Date.current }
+  validates_date :end_date, allow_blank: true
+  validates :end_date, comparison: { greater_than: :start_date }, allow_blank: true
 
 
   # Scopes
@@ -33,5 +37,15 @@ class Assignment < ApplicationRecord
 
   scope :for_role, ->(role) { joins(:employee).where('role = ?', Employee.roles[role]) }
   scope :for_date, ->(date) { where('start_date <= ? AND (end_date >= ? OR end_date IS NULL)', date, date) }
+
+  # Private Methods
+  #------------------
+  private 
+  def end_current_assignment
+    # check if the end date != nil
+    if employee.current_assignment != nil
+      employee.current_assignment.update(end_date: start_date)
+    end
+  end
 
 end

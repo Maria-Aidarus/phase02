@@ -34,6 +34,13 @@ class Employee < ApplicationRecord
     scope :is_18_or_older, -> { where('date_of_birth <= ?', 18.years.ago) }
     scope :younger_than_18, -> { where('date_of_birth > ?', 18.years.ago) }
 
+    # roles | mapping
+    enum :role, { employee: 1, manager: 2, admin: 3 }
+    scope :regulars, -> { where(role: 1) }
+    scope :managers, -> { where(role: 2) }
+    scope :admins, -> { where(role: 3) }
+
+    # Methods 
     def name
         last_name + " " + first_name
     end 
@@ -43,8 +50,12 @@ class Employee < ApplicationRecord
     end
 
     def current_assignment
-        assignment
+        self.assignments.current.first
     end
+
+    # def over_18?
+    #     age >= 18
+    # end
 
     def make_active 
         self.active = true
@@ -55,13 +66,6 @@ class Employee < ApplicationRecord
         self.active = false
         self.save!
     end
-
-
-    # roles | mapping
-    enum :role, { employee: 1, manager: 2, admin: 3 }
-    scope :regulars, -> { where(role: 1) }
-    scope :managers, -> { where(role: 2) }
-    scope :admins, -> { where(role: 3) }
 
     # Private Methods
     #------------------
