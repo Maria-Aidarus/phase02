@@ -16,7 +16,7 @@ FactoryBot.define do
         last_name { "Aidarus" }
         ssn { "097328462" }
         date_of_birth { "2002-03-05" }
-        phone { "243-654-2345" }
+        phone { "243-654-2347" }
         role { 3 }
         active { true }
     end

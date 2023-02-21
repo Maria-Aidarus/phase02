@@ -35,12 +35,13 @@ describe Assignment do
       create_assignments
     end
 
-    # destroys associated records from the given model
+    # deletes associated records from the given model
     teardown do
-      create_stores
-      create_employees
-      create_assignments
-    end
+      destroy_assignments
+      destroy_employees
+      destroy_stores
+    end 
+
 
     should "have a scope that orders assignments by the store" do
       assert_equal [3, 4, 2, 1, 5, 6], Assignment.by_store.map{|a| a.id}
