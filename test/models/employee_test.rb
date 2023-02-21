@@ -171,6 +171,20 @@ describe Employee do
       assert_equal false, @sara.over_18?
     end
 
+    should "show that the employer_role? method works" do 
+      assert_equal false , @maria.employee_role?
+      assert_equal true, @sara.employee_role?
+    end
+
+    should "show that the manager_role? method works" do 
+      assert_equal false , @may.manager_role?
+      assert_equal true, @maryam.manager_role?
+    end
+
+    should "show that the admin_role? method works" do 
+      assert_equal true , @maria.admin_role?
+    end
+
   end
   
 end
