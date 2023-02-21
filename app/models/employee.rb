@@ -54,8 +54,11 @@ class Employee < ApplicationRecord
     end
 
     def over_18?
+        # store the current date
         now = Date.current.to_date
+        # store the date_of_birth
         dob = self.date_of_birth.to_date
+        # compare
         age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
         age >= 18    
     end
