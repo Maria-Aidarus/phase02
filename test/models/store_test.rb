@@ -94,6 +94,25 @@ describe Store do
       assert_equal "7628272973", @cmu_cafe.phone
     end
 
+
+    should "show that the make_active method works" do
+      @may.make_active
+      assert_equal true, @may.active
+    end
+
+    should "show that the make_inactive method works" do
+      @huda.make_inactive
+      assert_equal false, @huda.active
+    end
+
+    should "show that the name method works" do 
+      assert_equal "Aidarus Maria", @maria.name
+    end
+
+    should "show that the proper_name method works" do
+      assert_equal "Huda Joad", @huda.proper_name
+    end
+
   end
 
 end

@@ -123,6 +123,32 @@ describe Employee do
       assert_equal false, @cmu_cafe.active
     end
 
+    should "show that the CMU Cafe's phone number was stripped of non-digits" do
+      assert_equal "7628272973", @cmu_cafe.phone
+    end
+    
+    should "show that the make_active method works" do
+      @may.make_active
+      assert_equal true, @may.active
+    end
+
+    should "show that the make_inactive method works" do
+      @huda.make_inactive
+      assert_equal false, @huda.active
+    end
+
+    should "show that the name method works" do 
+      assert_equal "Aidarus Maria", @maria.name
+    end
+
+    should "show that the proper_name method works" do
+      assert_equal "Huda Joad", @huda.proper_name
+    end
+
+    should "show that the current_assignment method works" do
+      assert_equal "2", @sara.current_assignment
+    end
+
   end
   
 end

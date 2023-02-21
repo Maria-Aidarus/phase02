@@ -34,6 +34,18 @@ class Employee < ApplicationRecord
     scope :is_18_or_older, -> { where('date_of_birth <= ?', 18.years.ago) }
     scope :younger_than_18, -> { where('date_of_birth > ?', 18.years.ago) }
 
+    def name
+        last_name + " " + first_name
+    end 
+
+    def proper_name
+        first_name + " " + last_name
+    end
+
+    def current_assignment
+        assignment
+    end
+
     def make_active 
         self.active = true
         self.save!
@@ -43,6 +55,7 @@ class Employee < ApplicationRecord
         self.active = false
         self.save!
     end
+
 
     # roles | mapping
     enum :role, { employee: 1, manager: 2, admin: 3 }
@@ -70,4 +83,5 @@ class Employee < ApplicationRecord
         # creates new string stored with the phone number
         self.ssn = ssn
     end
+
 end
