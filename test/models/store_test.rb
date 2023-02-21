@@ -76,7 +76,7 @@ describe Store do
       assert_equal ["CMU Cafe", "Coffee Beans", "Starbucks"], Store.active.alphabetical.map{|s| s.name}
     end
 
-    should "have a scope that returns tha inactive stores" do
+    should "have a scope that returns the inactive stores" do
       assert_equal ["Flat White"], Store.inactive.alphabetical.map{|s| s.name}
     end
 
