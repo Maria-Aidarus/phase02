@@ -12,14 +12,24 @@ class Assignment < ApplicationRecord
   # Validations 
   #------------------
   # validating store_id, employee_id
-  validates_presence_of :store_id
-  validates_presence_of :employee_id, {where: employee.active}
+  validate :store_active
+  validates_presence_of :store_id 
+  validates_presence_of :employee_id
   validates_presence_of :start_date
   # validating date
   validates_date :start_date
   validates :start_date, comparison: {less_than_or_equal_to: Date.current }
   validates_date :end_date, allow_blank: true
   validates :end_date, comparison: { greater_than: :start_date }, allow_blank: true
+
+  def store_active
+    store_ids = Store.active.map{|e| e.id}
+    # write a for loop 
+  end
+
+  def employee_active?
+    self.employee.active == true
+  end
 
 
   # Scopes
