@@ -112,20 +112,6 @@ describe Employee do
     should "show that May's ssn was stripped of non-digits" do
       assert_equal "987428523", @may.ssn
     end
-
-    should "show that make_active method works" do
-      @flat_white.make_active
-      assert_equal true, @flat_white.active
-    end
-
-    should "show that make_inactive method works" do
-      @cmu_cafe.make_inactive
-      assert_equal false, @cmu_cafe.active
-    end
-
-    should "show that the CMU Cafe's phone number was stripped of non-digits" do
-      assert_equal "7628272973", @cmu_cafe.phone
-    end
     
     should "show that the make_active method works" do
       @may.make_active
@@ -148,22 +134,6 @@ describe Employee do
     should "show that the current_assignment method works" do
       assert_nil @huda.current_assignment
       assert_equal @maria.current_assignment, @maria_assignment_two
-    end
-
-    should "show that the end_current_assignment method works" do
-      # Create a new store, employee, and two assignments
-      @temp_cafe = FactoryBot.create(:store, name: 'Cafe Temp')
-      @aisha = FactoryBot.create(:employee, first_name: 'Aisha', last_name: 'Al-Khaldi', ssn: '986201864')
-      @aisha_assignment = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2022-08-06', end_date: nil)
-      @aisha_assignment_two = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2023-02-21', end_date: nil)
-      @aisha_assignment.reload
-      # check for equality
-      assert_equal @aisha_assignment.end_date, @aisha_assignment_two.start_date
-      # Destroy all new objects
-      @aisha_assignment.delete
-      @aisha_assignment_two.delete
-      @aisha.delete
-      @temp_cafe.delete
     end
 
     should "show that the over_18? method works" do 

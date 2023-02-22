@@ -44,84 +44,47 @@ describe Assignment do
 
 
     should "have a scope that orders assignments by the store" do
-      assert_equal [3, 4, 2, 1, 5, 6], Assignment.by_store.map{|a| a.id}
+      assert_equal [3, 1, 2, 4, 5], Assignment.by_store.map{|a| a.id}
     end
 
     should "have a scope that returns current assignments" do
-      assert_equal [3, 4, 5, 6], Assignment.current.by_store.map{|a| a.id}
+      assert_equal [3, 4, 5], Assignment.current.by_store.map{|a| a.id}
     end
 
     should "have a scope that returns all past assignments" do
-      assert_equal [2, 1], Assignment.past.by_store.map{|a| a.id}
+      assert_equal [1, 2], Assignment.past.by_store.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments ordered by employee" do
-      assert_equal [1, 6, 5, 2, 4, 3], Assignment.by_employee.map{|a| a.id}
+      assert_equal [1, 5, 4, 2, 3], Assignment.by_employee.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments ordered chronologically" do
-      assert_equal [4, 5, 3, 6, 1, 2], Assignment.chronological.map{|a| a.id}
+      assert_equal [4, 3, 5, 1, 2], Assignment.chronological.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments for store: Starbucks" do
-      assert_equal [1, 6, 5], Assignment.for_store(@starbucks).by_employee.map{|a| a.id}
+      assert_equal [1, 5, 4, 2], Assignment.for_store(@starbucks).by_employee.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments for a specific employee: Maria Aidarus" do
-      assert_equal [1, 6], Assignment.for_employee(@maria).by_store.map{|a| a.id}
+      assert_equal [1, 5], Assignment.for_employee(@maria).by_store.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments for regular employees" do
-      assert_equal [4, 5], Assignment.for_role("employee").by_store.map{|a| a.id}
+      assert_equal [4], Assignment.for_role("employee").by_store.map{|a| a.id}
     end
 
     should "have a scope that returns all the assignments for date 2022-01-01" do
-      assert_equal [2, 1], Assignment.for_date("2022-01-01").by_store.map{|a| a.id}
-    end
-
-    should "show that make_active method works" do
-      @flat_white.make_active
-      assert_equal true, @flat_white.active
-    end
-
-    should "show that make_inactive method works" do
-      @cmu_cafe.make_inactive
-      assert_equal false, @cmu_cafe.active
-    end
-
-    should "show that the CMU Cafe's phone number was stripped of non-digits" do
-      assert_equal "7628272973", @cmu_cafe.phone
-    end
-    
-    should "show that the make_active method works" do
-      @may.make_active
-      assert_equal true, @may.active
-    end
-
-    should "show that the make_inactive method works" do
-      @huda.make_inactive
-      assert_equal false, @huda.active
-    end
-
-    should "show that the name method works" do 
-      assert_equal "Aidarus, Maria", @maria.name
-    end
-
-    should "show that the proper_name method works" do
-      assert_equal "Huda Joad", @huda.proper_name
-    end
-
-    should "show that the current_assignment method works" do
-      assert_nil @huda.current_assignment
-      assert_equal @maria.current_assignment, @maria_assignment_two
+      assert_equal [1, 2], Assignment.for_date("2022-01-01").by_store.map{|a| a.id}
     end
     
     should "show that the end_current_assignment method works" do
       # Create a new store, employee, and two assignments
       @temp_cafe = FactoryBot.create(:store, name: 'Cafe Temp')
       @aisha = FactoryBot.create(:employee, first_name: 'Aisha', last_name: 'Al-Khaldi', ssn: '986201864')
-      @aisha_assignment = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2022-08-06', end_date: nil)
-      @aisha_assignment_two = FactoryBot.create(:assignment, employee: @aisha, store: @flat_white, start_date: '2023-02-21', end_date: nil)
+      @aisha_assignment = FactoryBot.create(:assignment, employee: @aisha, store: @starbucks, start_date: '2022-08-06', end_date: nil)
+      @aisha_assignment_two = FactoryBot.create(:assignment, employee: @aisha, store: @starbucks, start_date: '2023-02-21', end_date: nil)
       @aisha_assignment.reload
       # check for equality
       assert_equal @aisha_assignment.end_date, @aisha_assignment_two.start_date
