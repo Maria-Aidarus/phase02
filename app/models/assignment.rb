@@ -13,7 +13,7 @@ class Assignment < ApplicationRecord
   #------------------
   # validating store_id, employee_id
   validates_presence_of :store_id
-  validates_presence_of :employee_id
+  validates_presence_of :employee_id, {where: employee.active}
   validates_presence_of :start_date
   # validating date
   validates_date :start_date

@@ -47,8 +47,6 @@ gem 'bootsnap', require: false
 # Other gems
 gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '6.0.1'
-gem 'nokogiri', '1.14.1'
-
 
 
 group :development, :test do
