@@ -12,7 +12,7 @@ describe Store do
 
   # Validations
   #------------------
-  # validating the presence of :
+  # validating the presence of:
   should validate_presence_of(:name)
   should validate_presence_of(:street)
   should validate_presence_of(:city)

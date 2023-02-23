@@ -41,41 +41,56 @@ class Employee < ApplicationRecord
     scope :admins, -> { where(role: 3) }
 
     # Methods 
+    #------------------
     def name
+        # returns a string of the last_name, first_name
         self.last_name + ", " + self.first_name
     end 
 
     def proper_name
+        # returns a string of the first_name last_name
         self.first_name + " " + self.last_name
     end
 
     def current_assignment
+        # returns the employees current assignment
         self.assignments.current.first
     end
 
+    # predicate method
     def over_18?
+        # checks if the employee is over 18 or not
         self.date_of_birth < 18.years.ago.to_date 
     end
 
     def make_active 
+        # updates the active role to true
         self.active = true
+        # saves the value
         self.save!
     end
 
     def make_inactive
+        # updates the active role to false
         self.active = false
         self.save!
     end
 
+    # predicate method
     def employee_role?
+        # checks if the employee is a regular employee
         self.role == 1 || self.role == "employee"
     end
 
+    # predicate method
     def manager_role?
+        # checks if the employee is a manager
         self.role == 2 || self.role == "manager"
     end
 
+    # preidcate method
     def admin_role?
+        # checks if the employee is an admin
         self.role == 3 || self.role == "admin"
     end
 
