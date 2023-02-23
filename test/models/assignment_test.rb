@@ -52,39 +52,47 @@ describe Assignment do
       assert_equal [3, 1, 2, 4, 5], Assignment.by_store.map{|a| a.id}
     end
 
-    # testing to see if the model can return assignments mapped by each store
+    # testing to see if the model can return the current assignments mapped by each store
     should "have a scope that returns current assignments by stores" do
       assert_equal [3, 4, 5], Assignment.current.by_store.map{|a| a.id}
     end
 
+    # testing to see if the model can return the past assignments mapped by each store
     should "have a scope that returns all past assignments" do
       assert_equal [1, 2], Assignment.past.by_store.map{|a| a.id}
     end
 
+    # testing to see if the model can return all the assignments ordered by employees
     should "have a scope that returns all the assignments ordered by employee" do
       assert_equal [1, 5, 4, 2, 3], Assignment.by_employee.map{|a| a.id}
     end
 
+    # testing to see if the model can return all the assignments ordered chronologically 
     should "have a scope that returns all the assignments ordered chronologically" do
       assert_equal [4, 3, 5, 1, 2], Assignment.chronological.map{|a| a.id}
     end
 
+    # testing to see if the model can return assignments for a certain store 
     should "have a scope that returns all the assignments for store: Starbucks" do
       assert_equal [1, 5, 4, 2], Assignment.for_store(@starbucks).by_employee.map{|a| a.id}
     end
 
+    # testing to see if the model can return assignments for a certain employee
     should "have a scope that returns all the assignments for a specific employee: Maria Aidarus" do
       assert_equal [1, 5], Assignment.for_employee(@maria).by_store.map{|a| a.id}
     end
 
+    # testing to see if the model can return assignments for all regular employees
     should "have a scope that returns all the assignments for regular employees" do
       assert_equal [4], Assignment.for_role("employee").by_store.map{|a| a.id}
     end
 
+    # testing to see if the model can return all the assignment after a certain date
     should "have a scope that returns all the assignments for date 2022-01-01" do
       assert_equal [1, 2], Assignment.for_date("2022-01-01").by_store.map{|a| a.id}
     end
     
+    # testing to see if the model can end a previous assignment when a new one is created
     should "show that the end_current_assignment method works" do
       # Create a new store, employee, and two assignments
       @temp_cafe = FactoryBot.create(:store, name: 'Cafe Temp')
@@ -101,21 +109,25 @@ describe Assignment do
       @temp_cafe.delete
     end
 
+    # testing to see if the predicate method works | checks if the emmployee is over 18
     should "show that the over_18? method works" do 
       assert_equal true, @maria.over_18?
       assert_equal false, @sara.over_18?
     end
 
+    # testing to see if the predicate method works | checks if the employee is a regular employee
     should "show that the employer_role? method works" do 
       assert_equal false , @maria.employee_role?
       assert_equal true, @sara.employee_role?
     end
 
+    # testing to see if the predicate method works | checks if the employee is a manager
     should "show that the manager_role? method works" do 
       assert_equal false , @may.manager_role?
       assert_equal true, @maryam.manager_role?
     end
 
+    # testing to see if the predicate method works | checks if the employee is an admin
     should "show that the admin_role? method works" do 
       assert_equal true , @maria.admin_role?
     end
