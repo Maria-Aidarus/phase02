@@ -11,6 +11,7 @@ class Assignment < ApplicationRecord
 
   # Validations 
   #------------------
+  # validating the presence of: start_date, store_id, and employee_id
   validates_presence_of :start_date, :store_id, :employee_id
   validates_date :start_date
   validates :start_date, comparison: {less_than_or_equal_to: Date.current }

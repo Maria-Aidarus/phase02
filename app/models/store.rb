@@ -28,6 +28,8 @@ class Store < ApplicationRecord
     scope :inactive, -> { where(active: false) }
     scope :alphabetical, -> { order('name') }
 
+    # Methods 
+    #------------------
     def make_active 
         self.active = true
         self.save!

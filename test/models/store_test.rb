@@ -6,10 +6,13 @@ describe Store do
   # end
 
   # Relationships 
+  #------------------
   should have_many(:assignments)
   should have_many(:employees).through(:assignments)
 
   # Validations
+  #------------------
+  # validating the presence of :
   should validate_presence_of(:name)
   should validate_presence_of(:street)
   should validate_presence_of(:city)
@@ -18,7 +21,7 @@ describe Store do
   should validate_presence_of(:phone)
   should validate_uniqueness_of(:name).case_insensitive
 
-  # validating zip
+  # validating the zip code
   should allow_value("12345").for(:zip)
   should allow_value("23431").for(:zip)
   should allow_value("15217").for(:zip)
@@ -29,7 +32,7 @@ describe Store do
   should_not allow_value("12h89").for(:zip)
   should_not allow_value("8921A").for(:zip)
 
-  # validating state
+  # validating the state
   should allow_value("PA").for(:state)
   should allow_value("WV").for(:state)
   should allow_value("OH").for(:state)
@@ -39,7 +42,7 @@ describe Store do
   should_not allow_value(100).for(:state)
   should_not allow_value(10).for(:state)
 
-  # validating phone
+  # validating the phone number
   should allow_value("4122683259").for(:phone)
   should allow_value("412-268-3259").for(:phone)
   should allow_value("412.268.3259").for(:phone)
@@ -47,20 +50,20 @@ describe Store do
     
   should_not allow_value("2683259").for(:phone)
   should_not allow_value("4122683259x224").for(:phone)
-  should_not allow_value("800-TEX-TEEX").for(:phone)
+  should_not allow_value("800-TEX-TEXT").for(:phone)
   should_not allow_value("412/268/3259").for(:phone)
   should_not allow_value("412-2683-259").for(:phone)
 
   # Creating Contexts
-  context "Creating a Store Context" do 
-    # creates associated records from the given model
+  context "Creating a Store Context:" do 
+    # creates associated records from the given models
     setup do
       create_stores
       create_employees
       create_assignments
     end
 
-    # deletes associated records from the given model
+    # deletes associated records from the given models
     teardown do
       destroy_assignments
       destroy_employees
@@ -68,28 +71,35 @@ describe Store do
     end 
 
     # Test cases
+    #------------------
+    # testing if the model can alphabetize the stores
     should "have a scope that alphabetizes the stores" do
       assert_equal ["CMU Cafe", "Coffee Beans", "Flat White", "Starbucks"], Store.alphabetical.map{|s| s.name}
     end
 
+    # testing if the model can return the active stores
     should "have a scope that returns the active stores" do
       assert_equal ["CMU Cafe", "Coffee Beans", "Starbucks"], Store.active.alphabetical.map{|s| s.name}
     end
 
+    # testing if the model can return  the inactive stores
     should "have a scope that returns the inactive stores" do
       assert_equal ["Flat White"], Store.inactive.alphabetical.map{|s| s.name}
     end
 
+    # testing if the model can make a update and make it active
     should "show that make_active method works" do
       @flat_white.make_active
       assert_equal true, @flat_white.active
     end
 
+    # testing if the model can make a update and make it inactive
     should "show that make_inactive method works" do
       @cmu_cafe.make_inactive
       assert_equal false, @cmu_cafe.active
     end
 
+    # testing if the model can save the phone number as a string with only integers 
     should "show that the CMU Cafe's phone number was stripped of non-digits" do
       assert_equal "7628272973", @cmu_cafe.phone
     end
