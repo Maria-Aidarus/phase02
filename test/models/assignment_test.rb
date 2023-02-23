@@ -6,13 +6,16 @@ describe Assignment do
   # end
 
   # Relationships
+  #------------------
   should belong_to(:store)
   should belong_to(:employee)
 
   # Validations 
+  #------------------
+  # validates the presence of the date 
   should validate_presence_of(:start_date)
 
-  # validating date
+  # validating the date
   should allow_value(Date.current).for(:start_date)
   should allow_value(1.day.ago.to_date).for(:start_date)
   should allow_value(1.year.ago.to_date).for(:start_date)
@@ -27,7 +30,7 @@ describe Assignment do
   should_not allow_value(nil).for(:start_date)
 
   # Creating Contexts
-  context "Creating an Assignment Context" do
+  context "Creating an Assignment Context:" do
     # creates associated records from the given model
     setup do
       create_stores
@@ -42,12 +45,15 @@ describe Assignment do
       destroy_stores
     end 
 
-
+    # Test cases
+    #------------------
+    # testing to see if the model can order assignments by the store
     should "have a scope that orders assignments by the store" do
       assert_equal [3, 1, 2, 4, 5], Assignment.by_store.map{|a| a.id}
     end
 
-    should "have a scope that returns current assignments" do
+    # testing to see if the model can return assignments mapped by each store
+    should "have a scope that returns current assignments by stores" do
       assert_equal [3, 4, 5], Assignment.current.by_store.map{|a| a.id}
     end
 
